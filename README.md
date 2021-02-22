@@ -1,4 +1,4 @@
-## Electron+vue开发的文字转语音软件
+## Electron + vue + ElementUI + js开发的文字转语音软件
 
 [![screen](https://raw.githubusercontent.com/bawangxx/xz_voice/main/images/screen.png)](https://github.com/bawangxx/xz_voice)
 
@@ -24,6 +24,7 @@ static appkey = '设置成你在阿里云申请的：appkey';
 ### 1.找到路径：src\views\Convert\SelectMusic.vue
 ### 2.搜索代码：http://xxx.xxx.com/  修改为：你在七牛云空间cname的域名
 ### 3.将背景音乐包上传到七牛云的空间，设置为公开
+### 4.背景音乐包下载地址：https://bawangxx.lanzous.com/b0c34tv9e 密码:9r9y
 
 
 ## 三、软件打包
