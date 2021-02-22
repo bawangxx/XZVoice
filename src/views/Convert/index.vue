@@ -63,8 +63,7 @@
 		</el-footer>
 		<SelectVoicer ref="selectVoicerRef" @voicer-change="voicerChange" />
 		<SelectMusic ref="selectMusicRef" @music-change="musicChange" />
-		<!-- 注册对话框 -->
-		<my-reg-dialog ref="myRegDialogRef"></my-reg-dialog>
+		
 	</el-container>
 </template>
 
@@ -79,8 +78,6 @@ import SelectVoicer from "./SelectVoicer";
 import SelectMusic from "./SelectMusic";
 import { Howl } from "howler";
 import datauri from "datauri";
-import MyRegDialog from "@/components/NetAuthV2/RegDialog";
-import NetAuth from '@/components/NetAuthV2/Netauth';
 // ========== 右键菜单 ==========
 import { remote, clipboard } from "electron";
 const { Menu, MenuItem } = remote;
@@ -98,7 +95,6 @@ export default {
 	components: {
 		SelectVoicer,
 		SelectMusic,
-		MyRegDialog
 	},
 	mounted() {
 		this.$nextTick(function() {
@@ -187,14 +183,6 @@ export default {
 		},
 
 		async startConvert_sub(){
-			// 软件激活24小时未关闭，需要重新激活
-			if(NetAuth.acTime){
-				const dTime = dayjs.duration(dayjs().diff(NetAuth.acTime));
-				if(dTime.hours() >= 24) NetAuth.isValid = false;
-			}
-
-			// 激活判断
-			if (!NetAuth.isValid) return this.$refs.myRegDialogRef.showDialog(true);
 			
 			this.sound.stop();
 			this.isPlay = false;

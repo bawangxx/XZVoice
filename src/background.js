@@ -30,7 +30,6 @@ if (!gotTheLock) {
 			width: 1024,
 			height: 768,
 			webPreferences: {
-				title: "文字转语音大师",
 				enableRemoteModule: true, //开启远程模块，未来可能删除(添加右键菜单会有警告)
 				// nodeIntegration: process.env.ELECTRON_NODE_INTEGRATION,
 				nodeIntegration: true,
@@ -39,15 +38,18 @@ if (!gotTheLock) {
 			icon: path.join(__static, "icon.png"),
 			
 		});
+		
 
 		if (process.env.WEBPACK_DEV_SERVER_URL) {
 			await win.loadURL(process.env.WEBPACK_DEV_SERVER_URL);
+			win.setTitle('吾爱破解（作者：bawangxx）')
 			if (!process.env.IS_TEST) win.webContents.openDevTools();
 		} else {
 			//正式环境设置
 			Menu.setApplicationMenu(null); // 移除顶部菜单
 			createProtocol("app");
-			win.loadURL("app://./index.html");
+			await win.loadURL("app://./index.html");
+			win.setTitle('吾爱破解（作者：bawangxx）')
 		}
 	}
 

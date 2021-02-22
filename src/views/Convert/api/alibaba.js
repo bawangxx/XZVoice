@@ -12,9 +12,9 @@ const fse = require('fs-extra');
 
 class AlibabaAPI {
 
-	static AccessKeyId = 'LTAI4G1iJS1AhZuaztKnL3JZ';
-	static AccessKeySecret = 'Rrbx1bBX2ViH2jAUGUXChLKXgeyM1Y';
-	static appkey = 'nEaV1PbyH7FhCVbe';
+	static AccessKeyId = '设置成你在阿里云申请的：AccessKeyId';
+	static AccessKeySecret = '设置成你在阿里云申请的：AccessKeySecret';
+	static appkey = '设置成你在阿里云申请的：appkey';
 
 	// 获取时间戳
 	static timestamp() {

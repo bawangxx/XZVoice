@@ -28,10 +28,6 @@
 				<router-view></router-view>
 			</el-main>
 		</el-container>
-		<!-- 注册对话框 -->
-		<my-reg-dialog ref="myRegDialogRef"></my-reg-dialog>
-		<!-- 更新对话框 -->
-		<UpdateDialog ref="updateDialogRef" />
 		<!-- 开发者对话框 -->
 		<DevDialog ref="devDialogRef"></DevDialog>
 	</el-container>
@@ -39,17 +35,12 @@
 
 <script>
 const { shell } = require("electron");
-import MyRegDialog from "@/components/NetAuthV2/RegDialog";
-import UpdateDialog from '@/components/NetAuthV2/Update'
-import NetAuth from '@/components/NetAuthV2/Netauth';
 import Utils from "@/utils/utils"
 import DevDialog from "@/components/DevDialog/DevDialog";
 import Daili from '@/daili/config';
 
 export default {
 	components: {
-		MyRegDialog,
-		UpdateDialog,
 		DevDialog
 	},
 	data() {
@@ -57,10 +48,10 @@ export default {
 			menueList: [
 				{ id: "1", title: "语音合成", icon: "el-icon-menu", index: "/" },
 				// { id: "2", title: "高级设置", icon: "el-icon-setting", index: "/settings" },
-				{ id: "3", title: "注册激活", icon: "el-icon-document", index: "#register" },
-				{ id: "4", title: "官方购买", icon: "el-icon-shopping-cart-2", index: "#buy" },
+				// { id: "3", title: "注册激活", icon: "el-icon-document", index: "#register" },
+				{ id: "4", title: "下载地址", icon: "el-icon-info", index: "#buy" },
 				// { id: "5", title: "使用帮助", icon: "el-icon-help", index: "/help" },
-				{ id: "6", title: "在线升级", icon: "el-icon-info", index: "#update" },
+				// { id: "6", title: "在线升级", icon: "el-icon-info", index: "#update" },
 			],
 			defaultActive: "/",
 			updialogVisible: false, //软件更新对话框
@@ -89,14 +80,11 @@ export default {
 		// 菜单被选中激活时调用
 		menuSelectAct(index) {
 			switch (index) {
-				case "#register":
-					this.$refs.myRegDialogRef.showDialog(true);
-					break;
 				case "#update":
 					this.$refs.updateDialogRef.showDialog(null);
 					break;
 				case "#buy":
-					shell.openExternal("https://pr.kuaifaka.net/item/hQDB83");
+					shell.openExternal("https://github.com/bawangxx/xz_voice");
 					break;
 				case "#shopCollect":
 					this.$router.push('/');
@@ -109,33 +97,12 @@ export default {
 			}
 		},
 
-		// 检查更新
-		checkUpdate(){
-			NetAuth.checkUpdate((status, res) => {
-				if (status == 1) {
-					const config = JSON.parse(res);
-					this.$refs.updateDialogRef.showDialog(config);
-				} else {
-					console.log('获取更新失败！');
-				}
-			});
-		}
 
 	},
 
 	mounted() {
 		// 创建用户目录
 		Utils.createUserFolder();
-		//检查软件更新
-		this.checkUpdate();
-		// 网络验证
-		NetAuth.isLog = false;
-		// NetAuth.init();
-		NetAuth.isValid = JSON.parse(Daili.isValid); //是否激活
-		if (!NetAuth.isValid){
-			this.$refs.myRegDialogRef.showDialog(true);
-			this.$refs.myRegDialogRef.autoActivate();
-		}
 		
 		
 		
