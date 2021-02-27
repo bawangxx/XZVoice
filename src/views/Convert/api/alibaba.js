@@ -8,13 +8,29 @@ const stream = require("stream");
 const { promisify } = require("util");
 const pipeline = promisify(stream.pipeline);
 const fse = require('fs-extra');
-
+const Store = require("electron-store");
+const store = new Store();
 
 class AlibabaAPI {
 
-	static AccessKeyId = '设置成你在阿里云申请的：AccessKeyId';
-	static AccessKeySecret = '设置成你在阿里云申请的：AccessKeySecret';
-	static appkey = '设置成你在阿里云申请的：appkey';
+	static AccessKeyId = '';
+	static AccessKeySecret = '';
+	static appkey = '';
+
+	// key设置
+	static setAliKey(){
+		const keyObj = store.get("set.key");
+		console.log(keyObj);
+		if(keyObj){ // 使用自定义key
+			this.AccessKeyId = keyObj.accessKeyId;
+			this.AccessKeySecret = keyObj.accessKeySecret;
+			this.appkey = keyObj.appkey;
+		}else{ // 使用内部key
+			this.AccessKeyId = '设置成你在阿里云申请的：AccessKeyId';
+			this.AccessKeySecret = '设置成你在阿里云申请的：AccessKeySecret';
+			this.appkey = '设置成你在阿里云申请的：appkey';
+		}
+	}
 
 	// 获取时间戳
 	static timestamp() {

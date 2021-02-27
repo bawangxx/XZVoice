@@ -178,7 +178,6 @@ export default {
 		startConvert() {
 			// console.log(`音量：${this.volume} 语速：${this.speed} 背景音量：${this.volume_bg} 输出格式：${this.format} 保存目录：${this.saveFolder}`);
 			// console.log(`转换内容：${this.convertText}`);
-			
 			this.startConvert_sub();
 		},
 
@@ -191,9 +190,16 @@ export default {
 				return;
 			}
 			this.showLoading = true;
-
+			AlibabaAPI.setAliKey();
 			const bgmPath = await this.getBgmFilePath();
-			await this.startConvert_getVoice();
+			try {
+				await this.startConvert_getVoice();
+			} catch (error) {
+				console.log(error);
+				this.$notify({ title: "转换失败", message: "文字转语音完毕！", type: "error" });
+				this.showLoading = false;	
+				return;
+			}
 			fse.ensureDirSync(this.saveFolder);
 			const subText = this.convertText.trim().slice(0, 3); //从开始截取3个字符，数字、字母、中文都算一个字符
 			const timestamp = Utils.getTimestamp10();

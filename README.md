@@ -14,9 +14,9 @@
 
 ### 2.修改代码：
 ```sh
-static AccessKeyId = '设置成你在阿里云申请的：AccessKeyId';
-static AccessKeySecret = '设置成你在阿里云申请的：AccessKeySecret';
-static appkey = '设置成你在阿里云申请的：appkey';
+this.AccessKeyId = '设置成你在阿里云申请的：AccessKeyId';
+this.AccessKeySecret = '设置成你在阿里云申请的：AccessKeySecret';
+this.appkey = '设置成你在阿里云申请的：appkey';
 ```
 
 
