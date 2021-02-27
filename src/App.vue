@@ -47,7 +47,7 @@ export default {
 		return {
 			menueList: [
 				{ id: "1", title: "语音合成", icon: "el-icon-menu", index: "/" },
-				// { id: "2", title: "高级设置", icon: "el-icon-setting", index: "/settings" },
+				{ id: "2", title: "高级设置", icon: "el-icon-setting", index: "/settings" },
 				// { id: "3", title: "注册激活", icon: "el-icon-document", index: "#register" },
 				{ id: "4", title: "下载地址", icon: "el-icon-info", index: "#buy" },
 				// { id: "5", title: "使用帮助", icon: "el-icon-help", index: "/help" },
