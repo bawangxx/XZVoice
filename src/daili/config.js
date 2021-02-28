@@ -1,7 +1,7 @@
 
 const mainConfig = {
     softName: 'AI配音专家',
-    softVersion: '1.0.8',
+    softVersion: '1.0.9',
     userFolder: "xz_voice", // 用户文件夹名
     proName: 'voice', //项目名称
     company: '吾爱破解', 
