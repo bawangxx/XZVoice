@@ -1,6 +1,6 @@
 {
   "name": "xz_voice",
-  "version": "0.1.0",
+  "version": "1.0.7",
   "private": true,
   "author": "XZSoft",
   "description": "最好用的文字转语音工具！",
@@ -23,6 +23,7 @@
     "dayjs": "^1.10.3",
     "dns": "^0.2.2",
     "electron-store": "^7.0.2",
+    "electron-updater": "^4.3.5",
     "element-ui": "^2.4.5",
     "ffmpeg-static": "^4.2.7",
     "howler": "^2.2.1",

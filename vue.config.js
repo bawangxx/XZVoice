@@ -12,6 +12,7 @@ module.exports = {
 			externals: ["sequelize","keyv"],
 			experimentalNativeDepCheck: true,
 			builderOptions: {// elctronbuilder设置
+				publish: ['github'],
 				appId: `com.xzsoft.${proName}`,
                 productName: `${appName}`,
                 asar: true, // 是否使用asar打包
@@ -21,7 +22,7 @@ module.exports = {
 					{ from: `./node_modules/ffmpeg-static/ffmpeg${ext}`, to: "./", }
 				],
 				appx: {
-					identityName: "117159ADCB705.1983785F184F1",
+					identityName: "117159ADCB705.AI",
 					publisher: "CN=F28873AD-2D3D-4AE9-9EA0-2A4DBFE7D41B",
 					publisherDisplayName: "小智软件",
 					applicationId: `com.xzsoft.${proName}`,

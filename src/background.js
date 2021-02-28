@@ -1,5 +1,6 @@
 "use strict";
 
+import { autoUpdater } from "electron-updater"
 import path from "path";
 import { app, protocol, BrowserWindow, Menu } from "electron";
 import { createProtocol } from "vue-cli-plugin-electron-builder/lib";
@@ -52,7 +53,8 @@ if (!gotTheLock) {
 			Menu.setApplicationMenu(null); // 移除顶部菜单
 			createProtocol("app");
 			await win.loadURL("app://./index.html");
-			win.setTitle('吾爱破解（作者：bawangxx）')
+			win.setTitle('吾爱破解（作者：bawangxx）');
+			autoUpdater.checkForUpdatesAndNotify();
 		}
 	}
 

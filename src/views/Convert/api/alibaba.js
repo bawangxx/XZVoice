@@ -20,15 +20,17 @@ class AlibabaAPI {
 	// key设置
 	static setAliKey(){
 		const keyObj = store.get("set.key");
-		console.log(keyObj);
-		if(keyObj){ // 使用自定义key
+		if(keyObj){ 
+			console.log('---------使用自定义key----------')
 			this.AccessKeyId = keyObj.accessKeyId;
 			this.AccessKeySecret = keyObj.accessKeySecret;
 			this.appkey = keyObj.appkey;
-		}else{ // 使用内部key
+		}else{ 
+			console.log('---------使用内部key----------')
 			this.AccessKeyId = '设置成你在阿里云申请的：AccessKeyId';
 			this.AccessKeySecret = '设置成你在阿里云申请的：AccessKeySecret';
 			this.appkey = '设置成你在阿里云申请的：appkey';
+			
 		}
 	}
 
@@ -59,14 +61,12 @@ class AlibabaAPI {
 
 	// 获取Token
 	static async getToken() {
-		const configPath = path.join(Utils.userFolder, "config.json");
-		const token = Utils.readJson(configPath, "token", null);
-		if (token) {
+		const token = store.get('token',null);
+		const appkey = store.get('appkey','');
+		if (token && this.appkey == appkey) {
 			const nowTime = Math.round(new Date().getTime() / 1000); //十位时间戳（精确到秒）
-			// console.log(nowTime)
-			// console.log(token.ExpireTime)
 			if (nowTime < token.ExpireTime) {
-				// console.log('---------本地返回----------')
+				console.log('---------本地返回token----------')
 				return token.Id;
 			}
 		}
@@ -88,8 +88,9 @@ class AlibabaAPI {
 		const res = await got(full_url);
 		if (res.statusCode == 200) {
 			const data = JSON.parse(res.body);
-			Utils.saveJson(configPath, "token", data.Token);
-			// console.log('---------网络获取----------')
+			store.set('token',data.Token);
+			store.set('appkey',this.appkey);
+			console.log('---------网络获取token----------')
 			return data.Token.Id;
 		}
 		return null;
