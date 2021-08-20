@@ -13,9 +13,9 @@ const store = new Store();
 
 class AlibabaAPI {
 
-	static AccessKeyId = '';
-	static AccessKeySecret = '';
-	static appkey = '';
+	static AccessKeyId = 'LTAI5t9NAUUmdFM68gRoshpb';
+	static AccessKeySecret = '8vghaHeenuTRM4jsejJJAvHxIrdBOx';
+	static appkey = '88H74ZiiW81v38oK';
 
 	// key设置
 	static setAliKey(){
