@@ -1,5 +1,7 @@
 ## Electron + vue + ElementUI + js开发的文字转语音软件
 
+### 最新版V2已发布，下载地址：https://pan.baidu.com/s/1yw_l8QrH1Xx1dZxPpkdL7w?pwd=8888
+
 [![screen](https://raw.githubusercontent.com/bawangxx/xz_voice/main/images/screen.png)](https://github.com/bawangxx/xz_voice)
 
 
